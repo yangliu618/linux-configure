@@ -54,7 +54,6 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 "第一行设置tab键为4个空格，第二行设置当行之间交错时使用4个空格
-set tabstop=4
 set shiftwidth=4
 
 set number
@@ -81,6 +80,17 @@ set nowrap "不自动换行
 set hlsearch "高亮显示结果  
 set incsearch "在输入要搜索的文字时，vim会实时匹配  
 set backspace=indent,eol,start whichwrap+=<,>,[,] "允许退格键的使用  
+" 使用4个空格来代替tab 简写 set sts=4
+set softtabstop=4 
+" 将插入状态下的tab 更改为空格 简写 set et
+set expandtab
+
+" 用来打开list功能，显示不可见字符
+nmap <leader>l :set list!<CR>
+" 设置为>-格式,用$结尾
+set listchars=tab:>-,eol:$
+
+set list
   
 "鼠标可用  
 "防止linux终端下无法拷贝  
@@ -131,8 +141,13 @@ map <F3> <c-y>
 map <silent> <F12> :nohlsearch<CR>
 
 "使用左右方向键来切换tab
-map <left> :tabprevious<cr>
-map <right> :tabnext<cr>
+"map <left> :tabprevious<cr>
+"map <right> :tabnext<cr>
+"map :bp  :tabprevious<cr>
+"map :bn  :tabnext<cr>
+
+map <F5> :tabprevious<cr>
+map <F6> :tabnext<cr>
 
 "Set mapleader
 let g:mapleader = ","
@@ -142,12 +157,6 @@ nnoremap <leader>html :set filetype=xhtml<CR>
 nnoremap <leader>css :set filetype=css<CR>
 nnoremap <leader>script :set filetype=javascript<CR>
 nnoremap <leader>php :set filetype=php<CR> 
-
-let $dir = '/var/www'
-
-let $rel = $dir.'/release'
-
-let $ide = $dir.'/ideliver'
 
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 
