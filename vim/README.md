@@ -8,6 +8,8 @@ ubuntu 12.04 x64
 
 下载文件:vimcdoc-1.8.0.tar.gz
 
+$:wget https://github.com/rockywu/linux-configure/blob/master/vim/vimcdoc-1.8.0.tar.gz
+
 $:tar -zxvf vimcdoc-1.8.0.tar.gz
 
 $:cd vimcdoc-1.8.0
