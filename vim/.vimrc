@@ -126,6 +126,8 @@ set autoread
 " 关掉智能补全时的预览窗口
 set completeopt=longest,menu
 
+let g:vimrc_loaded = 1
+
 "--------------------------------------------------------------------------
 
 
@@ -315,11 +317,17 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 " 删除行尾空格并且保存该文件
 nmap <silent> <leader>ws :call DeleteTrailingWS()<cr>:w<cr>
 
-" 设置自动完成快捷键
+" 设置自动完成快捷键 设置
+set completeopt=menu
+set complete-=u
+set complete-=i
 inoremap <C-]>             <C-X><C-]>
+inoremap <C-F>             <C-X><C-F>
+inoremap <C-D>             <C-X><C-D>
 inoremap <C-L>             <C-X><C-L>
 
-
+"设置tags选项为当前目录下的tags文件
+set tags=tags	
 
 "--------------------------------------------------------------------------
 
@@ -350,24 +358,47 @@ nmap <silent> <leader>tt :NERDTreeToggle<cr>
 
 
 " Super Tab
-let g:SuperTabRetainCompletionType=2
-let g:SuperTabDefaultCompletionType="<C-X><C-O>"
-let g:SuperTabContextDefaultCompletionType='<C-P>'
+let g:SuperTabPluginLoaded=2
+let g:SuperTabDefaultCompletionType='context'
+let g:SuperTabContextDefaultCompletionType='<c-p>'
+
+
+""""""""""""""""""""""""""""""
+" lookupfile setting
+""""""""""""""""""""""""""""""
+let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
+let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
+let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
+let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
+let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
+if filereadable("./filenametags")                "设置tag文件的名
+    let g:LookupFile_TagExpr = '"./filenametags"'
+endif
+"映射LookupFile为,lk
+nmap <silent> <leader>lk :LUTags<cr>
+"映射LUBufs为,ll
+nmap <silent> <leader>ll :LUBufs<cr>
+"映射LUWalk为,lw
+nmap <silent> <leader>lw :LUWalk<cr>
+" lookup file with ignore case
+function! LookupFile_IgnoreCaseFunc(pattern)
+    let _tags = &tags
+    try
+        let &tags = eval(g:LookupFile_TagExpr)
+        let newpattern = '\c' . a:pattern
+        let tags = taglist(newpattern)
+    catch
+        echohl ErrorMsg | echo "Exception: " . v:exception | echohl NONE
+        return ""
+    finally
+        let &tags = _tags
+    endtry
+
+    " Show the matches for what is typed so far.
+    let files = map(tags, 'v:val["filename"]')
+    return files
+endfunction
+let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc' 
 
 "--------------------------------------------------------------------------
-
-
-"--------------------------------未知--------------------------------------
-let g:vimrc_loaded = 1
-set tags=/var/www/libro/tags
-"--------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
