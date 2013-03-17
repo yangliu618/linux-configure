@@ -71,6 +71,14 @@ set showmatch
 "在输入要搜索的文字时，vim会实时匹配 
 set incsearch
 
+" vim 会话操作 -- 使CTRL-Z 可以挂起vim  使用fg 可以回到之前挂起vim的位置 Session options
+set sessionoptions-=curdir
+set sessionoptions+=sesdir
+
+"关闭文件备份
+set nobackup
+set nowb
+
 "取消使用SWP文件缓冲
 set noswapfile
 
@@ -112,7 +120,46 @@ set nowrap "自动折行
 "Set to auto read when a file is changed from the outside
 set autoread
 
+" 开启拼写建议
+"set spell
 
+" 关掉智能补全时的预览窗口
+set completeopt=longest,menu
+
+"--------------------------------------------------------------------------
+
+
+"--------------------------------状态栏设置--------------------------------
+" 开启状态栏菜单
+set wildmenu
+
+"总是显示状态栏status line
+set laststatus=2
+
+highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
+
+function! CurDir()
+	let curdir = substitute(getcwd(), $HOME, "~", "g")
+	return curdir
+endfunction
+
+set statusline=[%n]\ %f%m%r%h\ \|\ \ CWD:\ %{CurDir()}/\ %=\|\ %l,%c\ %p%%\ \|\ ascii=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
+
+"--------------------------------------------------------------------------
+
+"------------------------user interface 基本配置-------------------------
+"Always show current position
+set ruler
+
+" 设置 命令行行高为2行
+set cmdheight=2
+
+
+" 搜索时忽略大小写
+set ignorecase
+
+"开启魔术功能 此功能可以在 :help magic中查看，蛮有用的
+set magic
 
 "--------------------------------------------------------------------------
 
@@ -216,21 +263,14 @@ function! SwitchToBuf(filename)
     endif
 endfunction
 
-"--------------------------------------------------------------------------
 
-
-"--------------------------------状态栏设置--------------------------------
-"总是显示状态栏status line
-set laststatus=2
-
-highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
-
-function! CurDir()
-	let curdir = substitute(getcwd(), $HOME, "~", "g")
-	return curdir
-endfunction
-
-set statusline=[%n]\ %f%m%r%h\ \|\ \ CWD:\ %{CurDir()}/\ %=\|\ %l,%c\ %p%%\ \|\ ascii=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
+" 此方法用于删除文本行尾的空格
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  nohl
+  exe "normal `z"
+endfunc
 
 "--------------------------------------------------------------------------
 
@@ -268,31 +308,19 @@ map <leader>es :tabnew<cr>:setl buftype=nofile<cr>
 "创建临时文件
 map <leader>ec :tabnew ~/tmp/scratch.txt<cr>
 
-"--------------------------------------------------------------------------
+"使用 *,#搜索当前选择的内容
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+
+" 删除行尾空格并且保存该文件
+nmap <silent> <leader>ws :call DeleteTrailingWS()<cr>:w<cr>
+
+" 设置自动完成快捷键
+inoremap <C-]>             <C-X><C-]>
+inoremap <C-L>             <C-X><C-L>
 
 
-"--------------------------------插件设置-----------------------------------
-" winmanager setting
-let g:winManagerWindowLayout = "BufExplorer,FileExplorer|TagList"
-let g:winManagerWidth = 30
-let g:defaultExplorer = 0
-nmap <silent> <leader>wf :FirstExplorerWindow<cr>
-nmap <silent> <leader>wb :BottomExplorerWindow<cr>
-nmap <silent> <leader>wm :WMToggle<cr>
-autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
-
-" NERDTree setting
-nmap <silent> <leader>tt :NERDTreeToggle<cr>
-
-
-" super tab
-"let g:SuperTabPluginLoaded=1 " Avoid load SuperTab Plugin
-"let g:SuperTabDefaultCompletionType='context'
-"let g:SuperTabContextDefaultCompletionType='<c-p>'
-"let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-"let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-"let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
 "--------------------------------------------------------------------------
 
 
@@ -304,6 +332,38 @@ nnoremap <leader>script :set filetype=javascript<CR>
 nnoremap <leader>python :set syntax=python<CR> 
 
 "--------------------------------------------------------------------------
+
+
+"--------------------------------插件设置-----------------------------------
+" winmanager setting
+let g:winManagerWindowLayout = "BufExplorer,FileExplorer|TagList"
+let g:winManagerWidth = 30
+let g:defaultExplorer = 0
+nmap <silent> <leader>1 :FirstExplorerWindow<cr>
+nmap <silent> <leader>2 :BottomExplorerWindow<cr>
+nmap <silent> <leader>wm :WMToggle<cr>
+autocmd BufWinEnter \[Buf\ List\] setl nonumber
+
+
+" NERDTree setting
+nmap <silent> <leader>tt :NERDTreeToggle<cr>
+
+
+" Super Tab
+let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+let g:SuperTabContextDefaultCompletionType='<C-P>'
+
+"--------------------------------------------------------------------------
+
+
+"--------------------------------未知--------------------------------------
+let g:vimrc_loaded = 1
+set tags=/var/www/libro/tags
+"--------------------------------------------------------------------------
+
+
+
 
 
 
