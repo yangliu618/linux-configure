@@ -3,15 +3,15 @@ linux-configure
 
 环境 ubuntu 12.04 x64
 
-下载仓库
+<strong>下载仓库</strong>
 
 $: git clone https://github.com/rockywu/linux-configure.git
 
 $: cd linux-configure
 
-开始VIM IED的配置之旅
+<strong>开始VIM IED的配置之旅</strong>
 
-安装vim中文手册包(英文好的可以略过）
+<strong>安装vim中文手册包(英文好的可以略过）</strong>
 
 下载文件:vimcdoc-1.8.0.tar.gz
 
@@ -25,7 +25,11 @@ $:sh vimcdoc.sh -i
 
 安装完成，进入vim 输入:help就能看到中文手册
 
-1、基本修改
+<strong>1、复制.vimrc 文件到用户根目录 ~/.vim/</strong>
+
+$: cp vim/.vimrc ~/.vim/.vimrc
+
+<strong>2、基本修改</strong>
 
 编辑文件内容:
 
@@ -47,11 +51,11 @@ if filereadable($HOME."/.vim/.vimrc")
 
 endif
 
-2、安装ctags插件
+<strong>3、安装ctags插件</strong>
 
 $:sudo apt-get install ctags
 
-3、复制插件包(将vimfile目录下所有的文件复制到~/.vim/下
+<strong>4、复制插件包(将vimfile目录下所有的文件复制到~/.vim/下</strong>
 $: cp -R vim/vimfile/* ~/.vim/
 
 打开vim 就能看到成果了。
