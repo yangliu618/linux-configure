@@ -1,2 +1,2 @@
 #!/bin/sh
-ctags -R $1
+ctags -R --langmap=php:.php,javascript:.js $1
