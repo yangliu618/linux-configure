@@ -305,6 +305,8 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 nmap <silent> <leader>bp :tabprevious<cr>
 nmap <silent> <leader>bn :tabnext<cr>
+nmap <F3> :tabprevious<cr>
+nmap <F4> :tabnext<cr>
 "创建草稿文件
 map <leader>es :tabnew<cr>:setl buftype=nofile<cr>
 "创建临时文件
@@ -373,7 +375,8 @@ let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符�
 let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
 let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
 let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
-let g:LookupFile_TagExpr = '"./lookupfiletags"' "设置tag文件的名
+"设置tag文件的名
+let g:LookupFile_TagExpr = '"./lookupfiletags"'
 "映射LookupFile为,lk
 nmap <silent> <leader>lk :LUTags<cr>
 "映射LUBufs为,ll
@@ -400,5 +403,18 @@ function! LookupFile_IgnoreCaseFunc(pattern)
 endfunction
 let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc' 
 
+" cscope seting
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=1
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+    set csverb
+endif
+set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 "--------------------------------------------------------------------------
 
