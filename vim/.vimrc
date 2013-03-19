@@ -409,12 +409,17 @@ if has("cscope")
     set csto=1
     set cst
     set nocsverb
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    endif
+    exec "cs add " . CurDir() . "/cscope.out " . CurDir()
     set csverb
 endif
 set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
+map <silent> <leader>cw :cw<cr>
+nmap <silent> <leader>t <ESC> :cs find t <c-r><c-w><cr>:cw<cr>
+nmap <silent> <leader>e <ESC> :cs find e <c-r><c-w><cr>:cw<cr>
+nmap <silent> <leader>i <ESC> :cs find i <c-r><c-w><cr>:cw<cr>
+nmap <silent> <leader>d <ESC> :cs find d <c-r><c-w><cr>:cw<cr>
+nmap <silent> <leader>g <ESC> :cs find g <c-r><c-w><cr>:cw<cr>
+nmap <F6> :cn<cr>
+nmap <F7> :cp<cr>
 "--------------------------------------------------------------------------
 
