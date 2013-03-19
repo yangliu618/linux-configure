@@ -362,7 +362,10 @@ nmap <silent> <leader>tt :NERDTreeToggle<cr>
 
 
 " Super Tab
-let g:SuperTabPluginLoaded=2
+" 0 - 不记录上次的补全方式
+" 1 - 记住上次的补全方式,直到用其他的补全命令改变它,2
+" 2 - 记住上次的补全方式,直到按ESC退出插入模式为止
+let g:SuperTabPluginLoaded=1
 let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabContextDefaultCompletionType='<c-p>'
 
