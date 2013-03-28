@@ -129,7 +129,8 @@ set completeopt=longest,menu
 let g:vimrc_loaded = 1
 
 " 预设文件模式为unix 但如果是dos文件
-set ffs=unix,dos ff=unix
+set ffs=unix
+set ff=unix
 
 "--------------------------------------------------------------------------
 
