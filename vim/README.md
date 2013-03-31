@@ -11,11 +11,11 @@ $: cd linux-configure
 
 <strong>开始VIM IED的配置之旅</strong>
 
+<strong>如果不需要一些高级功能，则可以将easy-vimrc复制到~/.vim/.vimrc 就完成了简单配置</strong>
+
 <strong>安装vim中文手册包(英文好的可以略过）</strong>
 
 下载文件:vimcdoc-1.8.0.tar.gz
-
-$:wget https://github.com/rockywu/linux-configure/blob/master/vim/vimcdoc-1.8.0.tar.gz
 
 $:tar -zxvf vimcdoc-1.8.0.tar.gz
 
