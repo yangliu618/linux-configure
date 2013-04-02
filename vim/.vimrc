@@ -339,6 +339,9 @@ nmap <leader>tags :!/bin/bash $HOME/.vim/doAll.sh<cr>
 nmap <leader>dotags :!/bin/bash $HOME/.vim/doAll.sh
 
 nmap <silent> <leader>nhl :nohlsearch<cr>
+
+" 去除number list设置
+nmap <silent> <leader>nono :set nonu<cr>:set nolist<cr>
 "--------------------------------------------------------------------------
 
 
