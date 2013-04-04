@@ -342,6 +342,9 @@ nmap <silent> <leader>nhl :nohlsearch<cr>
 
 " 去除number list设置
 nmap <silent> <leader>nono :set nonu<cr>:set nolist<cr>
+
+" 保存只读文件
+nmap <silent> <leader>sdww :w !sudo tee %<cr>
 "--------------------------------------------------------------------------
 
 
