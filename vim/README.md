@@ -3,6 +3,12 @@ linux-configure
 
 环境 ubuntu 12.04 x64
 
+<strong>如果想使用系统寄存器</strong>
+
+$: sudo apt-get install vim-gnome
+
+这样就可以在vim中使用"\* 或 "+ 来调用系统寄存器
+
 <strong>下载仓库</strong>
 
 $: git clone https://github.com/rockywu/linux-configure.git
