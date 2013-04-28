@@ -63,7 +63,7 @@ $:sudo apt-get install ctags
 
 <strong>4、复制插件包(将vimfile目录下所有的文件复制到~/.vim/下</strong>
 
-$: cp -R vim/vimfile/* ~/.vim/
+$: cp -R vim/vimfile/\* ~/.vim/
 
 <strong>5、安装cscope插件
 
