@@ -1,0 +1,12 @@
+#!/bin/sh
+#ssh -q -n -T -f -N -D 0.0.0.0:7070 root@ssh.lukin.net
+# Check for proper priveliges
+[ "`whoami`" = root ] || exec sudo "$0" "$@"
+
+cwd=$(cd "$(dirname "$0")"; pwd);
+hosts="$cwd/hosts"
+
+wget -t 5 "https://raw.github.com/kawaiiushio/smartladder/master/hosts" -O $hosts
+
+cp /etc/hosts /etc/hosts.bak
+cp $hosts /etc/hosts
