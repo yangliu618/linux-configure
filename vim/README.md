@@ -49,8 +49,8 @@ linux-configure
 
 编辑后:
 
-    if filereadable($HOME."/.vim/.vimrc")
-        source $HOME/.vim/.vimrc
+    if filereadable($HOME."/.vim/_vimrc")
+        source $HOME/.vim/_vimrc
     endif
 
 <strong>3、安装ctags插件</strong>
@@ -60,7 +60,6 @@ linux-configure
 <strong>4、复制插件包(将vimfile目录下所有的文件复制到~/.vim/下</strong>
 
     $：cp -R vim/\* ~/.vim/
-    $：mv ~/.vim/_vimrc ~/.vim/.vimrc
 
 <strong>5、安装cscope插件
 
