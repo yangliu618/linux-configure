@@ -23,11 +23,11 @@ $: cd linux-configure
 
 下载文件:vimcdoc-1.8.0.tar.gz
 
-$:tar -zxvf vimcdoc-1.8.0.tar.gz
+    $tar -zxvf vimcdoc-1.8.0.tar.gz
 
-$:cd vimcdoc-1.8.0
+    $cd vimcdoc-1.8.0
 
-$:sh vimcdoc.sh -i
+    $sh vimcdoc.sh -i
 
 安装完成，进入vim 输入:help就能看到中文手册
 
