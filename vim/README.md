@@ -5,15 +5,15 @@ linux-configure
 
 <strong>如果想使用系统寄存器</strong>
 
-$: sudo apt-get install vim-gnome
+    $： sudo apt-get install vim-gnome
 
 这样就可以在vim中使用"\* 或 "+ 来调用系统寄存器
 
 <strong>下载仓库</strong>
 
-$: git clone https://github.com/rockywu/linux-configure.git
+    $：git clone https://github.com/rockywu/linux-configure.git
 
-$: cd linux-configure
+    $：cd linux-configure
 
 <strong>开始VIM IED的配置之旅</strong>
 
@@ -23,31 +23,29 @@ $: cd linux-configure
 
 下载文件:vimcdoc-1.8.0.tar.gz
 
-    $tar -zxvf vimcdoc-1.8.0.tar.gz
+    $：tar -zxvf vimcdoc-1.8.0.tar.gz
 
-    $cd vimcdoc-1.8.0
+    $：cd vimcdoc-1.8.0
 
-    $sh vimcdoc.sh -i
+    $：sh vimcdoc.sh -i
 
 安装完成，进入vim 输入:help就能看到中文手册
 
 <strong>1、复制.vimrc 文件到用户根目录 ~/.vim/</strong>
 
-$: cp vim/.vimrc ~/.vim/.vimrc
+    $：cp vim/.vimrc ~/.vim/.vimrc
 
 <strong>2、基本修改</strong>
 
 编辑文件内容:
 
-$: sudo vim /etc/vim/vimrc 
+    $：sudo vim /etc/vim/vimrc 
 
 原内容:
 
-if filereadable("/etc/vim/vimrc.local")
-
-  source /etc/vim/vimrc.local
-
-endif
+    if filereadable("/etc/vim/vimrc.local")
+        source /etc/vim/vimrc.local
+    endif
 
 编辑后:
 
