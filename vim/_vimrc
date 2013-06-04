@@ -222,12 +222,15 @@ endif
 set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI "记住空格用下划线代替哦  
 set gfw=幼圆:h10:cGB2312 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Avoid clearing hilight definition in plugins
 if !exists("g:vimrc_loaded")
     "Enable syntax hl
     syntax enable
 
-    "color scheme
+    " color scheme
     if has("gui_running")
         set guioptions-=T
         set guioptions-=m
@@ -238,7 +241,8 @@ if !exists("g:vimrc_loaded")
     else
         colorscheme desert_my
     endif " has
-endif
+endif " exists(...)
+
 
 "--------------------------------------------------------------------------
 
@@ -284,11 +288,11 @@ endfunc
 
 
 "--------------------------------快速键设置--------------------------------
-"Fast reloading of the .vimrc
-map <silent> <leader>ss :source ~/.vim/.vimrc<cr>
+"Fast reloading of the _vimrc
+map <silent> <leader>ss :source ~/.vim/_vimrc<cr>
 
-"Fast editing of .vimrc
-map <silent> <leader>ee :call SwitchToBuf("~/.vim/.vimrc")<cr>
+"Fast editing of _vimrc
+map <silent> <leader>ee :call SwitchToBuf("~/.vim/_vimrc")<cr>
 
 "实现CTRL-S保存操作
 nmap <c-s> :w<CR>
