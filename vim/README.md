@@ -60,6 +60,7 @@ linux-configure
 <strong>4、复制插件包(将vimfile目录下所有的文件复制到~/.vim/下</strong>
 
     $：cp -R vim/\* ~/.vim/
+    $：mv ~/.vim/_vimrc ~/.vim/.vimrc
 
 <strong>5、安装cscope插件
 
