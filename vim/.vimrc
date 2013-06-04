@@ -33,9 +33,9 @@ endif
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
-"if has("autocmd")
-"  filetype plugin indent on
-"endif
+if has("autocmd")
+    autocmd FileType text setlocal textwidth=78
+endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -57,6 +57,8 @@ endif
 "--------------------------------基本设置--------------------------------
 "不要vim模仿vi模式，建议设置，否则会有很多不兼容的问题 
 set nocompatible
+
+"set mouse=a
 
 "Set mapleader
 let mapleader = ","
@@ -129,7 +131,7 @@ set completeopt=longest,menu
 let g:vimrc_loaded = 1
 
 " 预设文件模式为unix 但如果是dos文件
-set ffs=unix
+set ffs=unix,dos
 set ff=unix
 
 "--------------------------------------------------------------------------
@@ -338,13 +340,10 @@ set tags=tags
 nmap <leader>tags :!/bin/bash $HOME/.vim/doAll.sh<cr>
 nmap <leader>dotags :!/bin/bash $HOME/.vim/doAll.sh
 
-nmap <silent> <leader>nhl :nohlsearch<cr>
+nmap <silent> <leader>nohl :nohlsearch<cr>
 
-" 去除number list设置
 nmap <silent> <leader>nono :set nonu<cr>:set nolist<cr>
 
-" 保存只读文件
-nmap <silent> <leader>sdww :w !sudo tee %<cr>
 "--------------------------------------------------------------------------
 
 
@@ -438,3 +437,9 @@ nmap <F6> :cn<cr>
 nmap <F7> :cp<cr>
 "--------------------------------------------------------------------------
 
+"--------------------------------------------------------------------------
+" 内容补充
+filetype on
+filetype plugin on
+" set runtimepath+=~/.vim/textmateOnly
+" set runtimepath+=~/.vim/textmateOnly/after
