@@ -63,6 +63,7 @@ set nocompatible
 "Set mapleader
 let mapleader = ","
 let g:mapleader = ","
+let g:snips_author="rockywu 吴佳雷"
 
 "高亮显示结果
 set hlsearch
@@ -439,11 +440,20 @@ nmap <silent> <leader>d <ESC> :cs find d <c-r><c-w><cr>:cw<cr>
 nmap <silent> <leader>g <ESC> :cs find g <c-r><c-w><cr>:cw<cr>
 nmap <F6> :cn<cr>
 nmap <F7> :cp<cr>
+
+""""""""""""""""""""""""""""""
+" 添加python 语法
+""""""""""""""""""""""""""""""
+set filetype=python
+au BufNewFile,BufRead *.py,*.pyw setf python
+
+set ofu=syntaxcomplete#Complete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python runtime! autoload/python.vim
+
+
 "--------------------------------------------------------------------------
 
 "--------------------------------------------------------------------------
-" 内容补充
 filetype on
 filetype plugin on
-" set runtimepath+=~/.vim/textmateOnly
-" set runtimepath+=~/.vim/textmateOnly/after
