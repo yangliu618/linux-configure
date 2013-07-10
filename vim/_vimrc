@@ -451,7 +451,7 @@ set ofu=syntaxcomplete#Complete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python runtime! autoload/python.vim
 
-
+let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
 "--------------------------------------------------------------------------
 
 "--------------------------------------------------------------------------
