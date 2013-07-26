@@ -97,6 +97,7 @@ set whichwrap=b,s,<,>,[,]
 
 "将一个tab设置为>-格式,用$结尾
 set listchars=tab:>-,eol:$
+"set listchars=tab:>-
 
 "vim使用自动对起，也就是把当前行的对起格式应用到下一行；
 set autoindent
@@ -444,14 +445,13 @@ nmap <F7> :cp<cr>
 """"""""""""""""""""""""""""""
 " 添加python 语法
 """"""""""""""""""""""""""""""
-set filetype=python
-au BufNewFile,BufRead *.py,*.pyw setf python
-
-set ofu=syntaxcomplete#Complete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python runtime! autoload/python.vim
-
 let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
+
+""""""""""""""""""""""""""""""
+" 添加php语法手册
+""""""""""""""""""""""""""""""
+autocmd BufNewFile,Bufread *.ros,*.inc,*.php,*.phtml set keywordprg="help"
+set runtimepath+=$HOME/.vim/phpdoc
 "--------------------------------------------------------------------------
 
 "--------------------------------------------------------------------------
