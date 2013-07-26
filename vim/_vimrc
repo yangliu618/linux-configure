@@ -452,6 +452,40 @@ let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
 """"""""""""""""""""""""""""""
 autocmd BufNewFile,Bufread *.ros,*.inc,*.php,*.phtml set keywordprg="help"
 set runtimepath+=$HOME/.vim/phpdoc
+
+""""""""""""""""""""""""""""""
+" 添加php方法自动补全
+""""""""""""""""""""""""""""""
+au FileType php setlocal dict+=$HOME/.vim/phpdoc/php_funclist.txt
+"if !exists('g:AutoComplPop_Behavior')
+"    let g:AutoComplPop_Behavior = {}
+"    let g:AutoComplPop_Behavior['php'] = []
+"    call add(g:AutoComplPop_Behavior['php'], {
+"        \   'command'   : "\<C-x>\<C-o>", 
+"        \   'pattern'   : printf('\(->\|::\|\$\)\k\{%d,}$', 0),
+"        \   'repeat'    : 0,
+"        \})
+"endif
+
+""""""""""""""""""""""""""""""
+" 自动补全右边括号
+""""""""""""""""""""""""""""""
+:inoremap ( ()<ESC>i
+:inoremap ) <c-r>=ClosePair(')')<CR>
+:inoremap { {}<ESC>i
+:inoremap } <c-r>=ClosePair('}')<CR>
+:inoremap [ []<ESC>i
+:inoremap ] <c-r>=ClosePair(']')<CR>
+:inoremap < <><ESC>i
+:inoremap > <c-r>=ClosePair('>')<CR>
+
+function ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
+endf
 "--------------------------------------------------------------------------
 
 "--------------------------------------------------------------------------
