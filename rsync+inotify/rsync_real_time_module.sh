@@ -46,7 +46,7 @@ inotifywait -mrq --timefmt '%d/%m/%y %H:%M' --format  '%T %w%f %e' \
     do
         echo $event'-'$file
         case $event in
-            MODIFY|CREATE|MOVE|MODIFY,ISDIR|CREATE,ISDIR|MODIFY,ISDIR)
+         CLOSE_WRITE,CLOSE|MODIFY|CREATE|MOVE|MODIFY,ISDIR|CREATE,ISDIR|MODIFY,ISDIR)
                 if [ "${file: -4}" != '4913' ]  && [ "${file: -1}" != '~' ]; then
                     cmd="rsync -avz --exclude='*' --include=$file $dir $host::$module"
                     # echo $cmd
