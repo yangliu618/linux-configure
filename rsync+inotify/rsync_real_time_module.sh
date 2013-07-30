@@ -5,9 +5,16 @@
 ##########################
 sum=`ps -ef | grep $0 | grep -v "grep" | wc -l`
 if [ $sum -gt 2 ];then
-    echo '同步进程'$0'已经启动'
-    exit
+    process_id=`ps -ef | grep $0 | grep -v "grep" | awk '{print $2}'`
+    for kill_id in $process_id;do
+        if [ $$ -eq $kill_id ];then
+            echo '同步进程'$0'正在重新启动'
+        else
+            echo "kill $kill_id"
+        fi
+    done
 fi
+sleep 1
 
 ###########################
 # 在这里配置本地文件夹,目标host,目标的rsync_module。rsync_module在同步机器的/etc/rsyncd.conf文件中配置
