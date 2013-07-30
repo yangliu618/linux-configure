@@ -1,6 +1,15 @@
 #!/bin/bash
 
 ###########################
+# 添加监控shell是否已经开启，开启则kill掉之前的重新启动
+##########################
+sum=`ps -ef | grep $0 | grep -v "grep" | wc -l`
+if [ $sum -gt 2 ];then
+    echo '同步进程'$0'已经启动'
+    exit
+fi
+
+###########################
 # 在这里配置本地文件夹,目标host,目标的rsync_module。rsync_module在同步机器的/etc/rsyncd.conf文件中配置
 # 逗号前后不要有空格
 sync[0]='/home/aifang/site/,root@10.10.3.208,/home/www/source/aifang/aifang-site' # localdir,host,rsync_module
