@@ -1,5 +1,6 @@
 ###添加实时同步脚本
 
+> 1. 需要安装插件 `sudo apt-get install rsync` + `sudo apt-get install inotify-tools`
 
 > 接受端模块配置
     uid=root
