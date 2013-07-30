@@ -24,24 +24,24 @@ module=`echo $item | awk -F"," '{print $3}'`
 
 inotifywait -mrq --timefmt '%d/%m/%y %H:%M' --format  '%T %w%f %e' \
  --event CLOSE_WRITE,create,move,delete  $dir | while read  date time file event
-	do
-		echo $event'-'$file
-		case $event in
-			MODIFY|CREATE|MOVE|MODIFY,ISDIR|CREATE,ISDIR|MODIFY,ISDIR)
-				if [ "${file: -4}" != '4913' ]  && [ "${file: -1}" != '~' ]; then
-					cmd="rsync -avz --exclude='*' --include=$file $dir $host::$module"
-					# echo $cmd
-					$cmd
-				fi
-				;;
+    do
+        echo $event'-'$file
+        case $event in
+            MODIFY|CREATE|MOVE|MODIFY,ISDIR|CREATE,ISDIR|MODIFY,ISDIR)
+                if [ "${file: -4}" != '4913' ]  && [ "${file: -1}" != '~' ]; then
+                    cmd="rsync -avz --exclude='*' --include=$file $dir $host::$module"
+                    # echo $cmd
+                    $cmd
+                fi
+                ;;
 
-			MOVED_FROM|MOVED_FROM,ISDIR|DELETE|DELETE,ISDIR)
-				if [ "${file: -4}" != '4913' ]  && [ "${file: -1}" != '~' ]; then
-					cmd="rsync -avz --delete-excluded --exclude="$file" $dir $host::$module"
-					# echo $cmd
-					$cmd
-				fi
-				;;
-		esac
-	done &
+            MOVED_FROM|MOVED_FROM,ISDIR|DELETE|DELETE,ISDIR)
+                if [ "${file: -4}" != '4913' ]  && [ "${file: -1}" != '~' ]; then
+                    cmd="rsync -avz --delete-excluded --exclude="$file" $dir $host::$module"
+                    # echo $cmd
+                    $cmd
+                fi
+                ;;
+        esac
+    done &
 done
