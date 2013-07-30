@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -eq 2 ];then
-    git fetch $1 $2
+    git fetch $1 $2 : $2
     git rebase $1/$2
 elif [ $# -eq 1 ];then
     git fetch origin $1
