@@ -3,17 +3,29 @@
 ###########################
 # 添加监控shell是否已经开启，开启则kill掉之前的重新启动
 ##########################
-sum=`ps -ef | grep $0 | grep -v "grep" | wc -l`
-if [ $sum -gt 2 ];then
-    process_id=`ps -ef | grep $0 | grep -v "grep" | awk '{print $2}'`
-    for kill_id in $process_id;do
-        if [ $$ -eq $kill_id ];then
-            echo '同步进程'$0'正在重新启动'
-        else
-            echo "kill $kill_id"
-        fi
-    done
-fi
+echo "current $$"
+function kill_process_by_name()
+{
+    local name sum process_id kill_id
+    name="$1"
+    sum=`ps -ef | grep $name | grep -v "grep" | wc -l`
+    sleep 1
+    if [ $sum -gt 1 ];then
+        process_id=`ps -ef | grep $name | grep -v "grep" | awk '{print $2}'`
+        for kill_id in $process_id;do
+            if [ $$ -eq $kill_id ];then
+                echo '同步进程'$name'正在重新启动'
+            else
+                ps aux | awk '{print $2 }' | grep -q $kill_id 2> /dev/null
+                if [ $? -eq 0  ];then
+                    kill $kill_id
+                fi
+            fi
+        done
+    fi
+}
+kill_process_by_name "$0"
+kill_process_by_name "inotifywait"
 sleep 1
 
 ###########################
