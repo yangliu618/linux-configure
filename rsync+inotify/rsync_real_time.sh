@@ -35,6 +35,7 @@ sleep 1
 # 逗号前后不要有空格
 # 可以使用模块或者路径 root@10.10.3.208::$module_name root@10.10.3.208:$path
 sync[0]='/home/aifang/site/,root@10.10.3.208:/home/www/source/aifang/aifang-site' 
+sync[1]='/home/aifang/pages/,root@10.10.3.208:/home/www/source/aifang/aifang-pages' 
 # sync[1]='/path/to/local/dir,user@host::rsync_module'
 ###########################,qq
 
