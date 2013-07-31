@@ -1,4 +1,8 @@
 #!/bin/bash
+#######################
+#bash get current file directory
+#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#######################
 
 # $1 input content
 # return {type name}
@@ -45,7 +49,7 @@ function core_execute_character_string()
     if [ $# -gt 2 ] || [ $# -eq 0 ];then
         core_print_usage "$usage"
     else
-        $check_result=`core_check_input_type "$1"`
+        check_result=`core_check_input_type "$1"`
         if [ $check_result = "string" ];then
             eval "$1"
             if [ $? -eq 0 ];then
