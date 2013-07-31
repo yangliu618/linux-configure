@@ -1,8 +1,13 @@
 ###添加实时同步脚本
 
-> 1. 需要安装插件 `sudo apt-get install rsync` + `sudo apt-get install inotify-tools`
+> 1. 需要安装插件 
 
-> 接受端模块配置
+>> `sudo apt-get install rsync` 
+
+>> `sudo apt-get install inotify-tools`
+
+>> 
+    接收端模块配置
     uid=root
     gid=root
     # 这个test就是上面脚本中用到的rsync_module名
@@ -12,4 +17,4 @@
     path=/path/to/your/dir
     allow *
 
-> 重启rsync 服务 `rsync --daemon`
+> 2. 重启rsync 服务 `rsync --daemon`
