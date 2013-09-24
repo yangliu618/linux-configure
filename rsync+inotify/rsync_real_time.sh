@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#bash get current file directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/rsync_config.sh";
 ###########################
 # 添加监控shell是否已经开启，开启则kill掉之前的重新启动
 ##########################
@@ -34,8 +37,8 @@ sleep 1
 # 在这里配置本地文件夹,目标host,目标的rsync_module。rsync_module在同步机器的/etc/rsyncd.conf文件中配置
 # 逗号前后不要有空格
 # 可以使用模块或者路径 root@10.10.3.208::$module_name root@10.10.3.208:$path
-sync[0]='/home/www/aifang/site/,root@10.10.3.208:/home/www/source/aifang/aifang-site' 
-sync[1]='/home/www/aifang/pages/,root@10.10.3.208:/home/www/source/aifang/aifang-pages' 
+#sync[0]='/home/www/aifang/site/,root@10.10.3.208:/home/www/source/aifang/aifang-site' 
+#sync[1]='/home/www/aifang/pages/,root@10.10.3.208:/home/www/source/aifang/aifang-pages' 
 # sync[1]='/path/to/local/dir,user@host::rsync_module'
 ###########################,qq
 
