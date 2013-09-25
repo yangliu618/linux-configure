@@ -12,7 +12,7 @@ stop)
     ;;
 start)
     echo "current $$"
-    echo '同步进程'$1 $2'已经重新启动'
+    echo '同步进程rsync_real_time' $2'已经重新启动'
     nohup /bin/bash /home/rockywu/rsync+inotify/rsync_real_time.sh $2 > /home/www/log/rsync_real_time.log 2>&1 &
     exit 0;
     ;;
