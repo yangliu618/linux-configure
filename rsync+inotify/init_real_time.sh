@@ -11,9 +11,14 @@ stop)
     exit 0;
     ;;
 start)
-    echo "current $$"
-    echo '同步进程rsync_real_time' $2'已经重新启动'
-    nohup /bin/bash /home/rockywu/rsync+inotify/rsync_real_time.sh $2 > /home/www/log/rsync_real_time.log 2>&1 &
+    if [ $# -eq 2 ] && ( [ $2 -eq 1 ] || [ $2 -eq 2] );then
+        echo "current $$"
+        echo '同步进程rsync_real_time' $2'已经重新启动'
+        nohup /bin/bash /home/rockywu/rsync+inotify/rsync_real_time.sh $2 > /home/www/log/rsync_real_time.log 2>&1 &
+    else
+        echo "参数不正确(stop|start [type])"
+        exit 1;
+    fi
     exit 0;
     ;;
 *)
