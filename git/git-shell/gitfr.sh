@@ -12,4 +12,4 @@ else
     echo ">>>>>>>Run : git rebase origin/master"
     git rebase origin/master
 fi
-echo ">>>>>>>Run : command execution"
+echo ">>>>>>>command execution"

@@ -18,4 +18,4 @@ else
     echo ">>>>>>>Run : git push origin master:master"
     git push origin master:master
 fi
-echo ">>>>>>>Run : command execution"
+echo ">>>>>>>command execution"
