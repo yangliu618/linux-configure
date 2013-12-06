@@ -1,10 +1,9 @@
 #!/bin/bash
-echo ">>>>>>>Run : g++ execute start"
+echo ">>>>>>>g++ execute start"
 #$1 执行文件名
 #$2 编辑生成的执行文件
 #$3 编辑生成的执行路径
 if [ $# -eq 3 ];then
-    echo "asdf"
     g++ "$2" -o "$1$3"
     echo ">>>>>>>Run : g++ $2 -o $1$3"
 elif [ $# -eq 2 ];then
