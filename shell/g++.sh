@@ -8,7 +8,7 @@ if [ $# -eq 3 ];then
     echo ">>>>>>>Run : g++ $1 -o $3$2"
 if [ $# -eq 2 ];then
     g++ "$1" -o "$2"
-    echo ">>>>>>>Run : g++ $1 -o $2
+    echo ">>>>>>>Run : g++ $1 -o $2"
 elif [ $# -eq 1 ];then
     name=$1
     exec_name=${name%.*}
