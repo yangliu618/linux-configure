@@ -1,6 +1,6 @@
 #!/bin/bash 
 if ! [ $# -eq 1 ];then
-    echo "没有查询内容";
+    echo "not grep parameter";
     exit;
 fi;
 while true;
