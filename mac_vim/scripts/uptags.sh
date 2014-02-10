@@ -7,17 +7,10 @@ function get_base_path(){
     echo "$DIR";
 }
 
-function get_src_dir() {
-    if [ $# -eq 1 ];then
-        echo "$1";
-    else
-        echo `get_base_path`;
-    fi
-}
 PRJ_TYPE=php
 case ${PRJ_TYPE} in
     php)
-    SRC_DIR=`get_src_dir`;
+    SRC_DIR='.'
     echo $SRC_DIR;
     find ${SRC_DIR}             \
         -name ".git" -prune     \
@@ -33,3 +26,6 @@ case ${PRJ_TYPE} in
     *)
     ;;
 esac
+
+cscope -bkq -i cscope.files
+/usr/local/bin/ctags -L cscope.files
