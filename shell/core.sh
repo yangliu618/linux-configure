@@ -1,7 +1,12 @@
 #!/bin/bash
-#######################
-#bash get current file directory
-#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# get bash path
+function get_base_path(){
+    #bash get current file directory
+    local DIR;
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    echo "$DIR";
+}
+
 #######################
 
 # $1 input content
