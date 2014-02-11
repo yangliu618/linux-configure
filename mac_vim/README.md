@@ -12,6 +12,7 @@ install
 
 
 3、安装ctags 
+
 for ubuntu 
 
     sudo apt-get install 
@@ -20,6 +21,7 @@ for mac
     brew install ctags
 
 4、安装cscope
+
 for ubuntu 
 
     sudo apt-get install 
@@ -31,3 +33,12 @@ for mac
     
     ln -s ./mac_vim/* ~/.vim/
     ln -s ./mac_vim/.vimrc.local ~/.vimrc.local
+
+6、配置本地tags生成器
+    
+for mac
+
+    echo "alias uptags='/bin/bash $download_dir/linux-configure/mac_vim/scripts/uptags.sh'" >> ~/.bash_profile
+for ubuntu
+
+    echo "alias uptags='/bin/bash $download_dir/linux-configure/mac_vim/scripts/uptags.sh'" >> ~/.bashrc
