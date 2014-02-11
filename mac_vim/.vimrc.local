@@ -3,7 +3,43 @@ if !has('macunix')
     let g:neosnippet#disable_runtime_snippets = { "_": 1, }
 endif
 
+"添加自定义方法
+"获取当前目录
+function! CurDir()
+    let curdir = substitute(getcwd(), $HOME, "~", "g")
+    return curdir
+endfunction
+
 "添加自定义插件
+""""""""""""""""""""""""""""""
+" cscope seting
+""""""""""""""""""""""""""""""
+"if has("cscope")
+"    set csprg=/usr/bin/cscope
+"    set csto=1
+"    set cst
+"    set nocsverb
+"    exec "cs add " . CurDir() . "/cscope.out " . CurDir()
+"    set csverb
+"endif
+"set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
+"nmap <silent> <leader>t <ESC> :cs find t <c-r><c-w><cr>:cw<cr>
+"nmap <silent> <leader>e <ESC> :cs find e <c-r><c-w><cr>:cw<cr>
+"nmap <silent> <leader>i <ESC> :cs find i <c-r><c-w><cr>:cw<cr>
+"nmap <silent> <leader>d <ESC> :cs find d <c-r><c-w><cr>:cw<cr>
+"nmap <silent> <leader>g <ESC> :cs find g <c-r><c-w><cr>:cw<cr>
+
+"添加语法手册
+""""""""""""""""""""""""""""""
+" 添加php语法手册
+""""""""""""""""""""""""""""""
+autocmd BufNewFile,Bufread *.ros,*.inc,*.php,*.phtml set keywordprg="help"
+set runtimepath+=$HOME/.vim/phpdoc
+
+""""""""""""""""""""""""""""""
+" 添加php方法自动补全
+""""""""""""""""""""""""""""""
+au FileType php setlocal dict+=$HOME/.vim/phpdoc/php_funclist.txt
 
 
 "配置git快捷键"
