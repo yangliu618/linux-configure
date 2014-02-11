@@ -1,0 +1,90 @@
+"解决mac 下的报错
+if !has('macunix')
+    let g:neosnippet#disable_runtime_snippets = { "_": 1, }
+endif
+
+"添加自定义插件
+
+
+"配置git快捷键"
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit
+nnoremap <silent> <leader>gb :Gblame
+nnoremap <silent> <leader>gl :Glog
+nnoremap <silent> <leader>gp :Git push
+" Mnemonic _i_nteractive
+nnoremap <silent> <leader>gi :Git add -p %<CR>
+nnoremap <silent> <leader>gg :SignifyToggle<CR>
+
+" Switch to buffer according to file name
+function! SwitchToBuf(filename)
+    "let fullfn = substitute(a:filename, "^\\~/", $HOME . "/", "")
+    " find in current tab
+    let bufwinnr = bufwinnr(a:filename)
+    if bufwinnr != -1
+        exec bufwinnr . "wincmd w"
+        return
+    else
+        " find in each tab
+        tabfirst
+        let tab = 1
+        while tab <= tabpagenr("$")
+            let bufwinnr = bufwinnr(a:filename)
+            if bufwinnr != -1
+                exec "normal " . tab . "gt"
+                exec bufwinnr . "wincmd w"
+                return
+            endif
+            tabnext
+            let tab = tab + 1
+        endwhile
+        " not exist, new tab
+        exec "tabnew " . a:filename
+    endif
+endfunction
+
+
+" 此方法用于删除文本行尾的空格
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  nohl
+  exe "normal `z"
+endfunc
+
+"--------------------------------快速键设置--------------------------------
+"实现CTRL-S保存操作                                                                                                   
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>a
+
+"快速保存快捷键
+nmap <silent> <leader>ww :w<cr>
+nmap <silent> <leader>wf :w!<cr>
+
+"快速退出快捷键
+nmap <silent> <leader>qw :wq<cr>
+nmap <silent> <leader>qf :q!<cr>
+nmap <silent> <leader>qq :q<cr>
+nmap <silent> <leader>qa :qa<cr>
+
+"Tab configuration
+map <leader>tn :tabnew
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+nmap <silent> <leader>bp :tabprevious<cr>
+nmap <silent> <leader>bn :tabnext<cr>
+"创建草稿文件
+map <leader>es :tabnew<cr>:setl buftype=nofile<cr>
+"创建临时文件
+map <leader>ec :tabnew ~/tmp/scratch.txt<cr>
+
+"使用 *,#搜索当前选择的内容
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+
+" 删除行尾空格并且保存该文件
+nmap <silent> <leader>ws :call DeleteTrailingWS()<cr>:w<cr>
+
+
