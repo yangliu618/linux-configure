@@ -7,7 +7,8 @@ my mac Vim configure
     git clone https://github.com/spf13/spf13-vim.git
 
 install
-
+    
+    cd spf13-vim
     curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
 
 
@@ -31,6 +32,8 @@ for mac
 
 5、安装本地配置
     
+    git clone  https://github.com/rockywu/linux-configure.git
+    cd linux-configure
     ln -s ./mac_vim/* ~/.vim/
     ln -s ./mac_vim/.vimrc.local ~/.vimrc.local
 
