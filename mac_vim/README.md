@@ -9,6 +9,5 @@ my mac Vim configure
 
 3、安装本地配置
     
-    cp -r ./mac_vim/* ~/.vim/
-
-    cp ./mac_vim/.vimrc.local ~/.vimrc.local
+    ln -s ./mac_vim/* ~/.vim/
+    ln -s ./mac_vim/.vimrc.local ~/.vimrc.local
