@@ -14,13 +14,13 @@ case ${PRJ_TYPE} in
     echo $SRC_DIR;
     find ${SRC_DIR}             \
         -name ".git" -prune     \
-        -or -name ".sh" -prune   \
         -or -name "*.php"       \
         -or -name "*.js"        \
         -or -name "*.phtml"     \
         -or -name "*.css"       \
         -or -name "*.html"      \
-        -or -name "*.sh"      \
+        -or -name "*.sh"        \
+        -type f                 \
         > cscope.files
     ;;
     *)
