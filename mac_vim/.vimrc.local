@@ -6,6 +6,7 @@ endif
 "快速保存快捷键
 nmap <silent> <leader>ww :w<cr>
 nmap <silent> <leader>wf :w!<cr>
+nmap <silent> <leader>wrr :w !sudo tee %<cr>
 
 "快速退出快捷键
 nmap <silent> <leader>qw :wq<cr>
