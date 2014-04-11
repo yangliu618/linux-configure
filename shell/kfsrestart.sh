@@ -12,4 +12,5 @@ cd $gitdir;
 nohup /usr/bin/mvn clean jetty:run -Dajf.config.path=$gitdir -Djetty.port=$port > /tmp/start.$port.log 2>&1 &
 echo "starting ..."
 echo $?
+tail -f /tmp/start.$port.log
 
