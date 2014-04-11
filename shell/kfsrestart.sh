@@ -9,7 +9,7 @@ if [ ! -d $gitdir ];then
 fi
 port=8080;
 cd $gitdir;
-nohup /usr/bin/mvn clean jetty:run -Dajf.config.path=gitdir -Djetty.port=$port > /tmp/start.$port.log 2>&1 &
+nohup /usr/bin/mvn clean jetty:run -Dajf.config.path=$gitdir -Djetty.port=$port > /tmp/start.$port.log 2>&1 &
 echo "starting ..."
 echo $?
 
