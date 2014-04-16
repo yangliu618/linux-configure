@@ -375,7 +375,7 @@ autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
 
 " NERDTree setting
-nmap <silent> <leader>tt :NERDTreeToggle<cr>
+nmap <silent> <C-e> :NERDTreeToggle<cr>
 
 
 " Super Tab
