@@ -96,8 +96,8 @@ set backspace=indent,eol,start
 set whichwrap=b,s,<,>,[,]
 
 "将一个tab设置为>-格式,用$结尾
-set listchars=tab:>-,eol:$
-"set listchars=tab:>-
+"set listchars=tab:>-,eol:$
+set listchars=tab:>-
 
 "vim使用自动对起，也就是把当前行的对起格式应用到下一行；
 set autoindent
@@ -309,6 +309,8 @@ nmap <silent> <leader>qw :wq<cr>
 nmap <silent> <leader>qf :q!<cr>
 nmap <silent> <leader>qq :q<cr>
 nmap <silent> <leader>qa :qa<cr>
+"快速切换窗口
+nmap <C-w> <C-w><C-w>
 
 "Tab configuration
 map <leader>tn :tabnew
@@ -470,22 +472,23 @@ au FileType php setlocal dict+=$HOME/.vim/phpdoc/php_funclist.txt
 """"""""""""""""""""""""""""""
 " 自动补全右边括号
 """"""""""""""""""""""""""""""
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {}<ESC>i
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap < <><ESC>i
-:inoremap > <c-r>=ClosePair('>')<CR>
-
-function ClosePair(char)
+function! ClosePairExtend(char)
     if getline('.')[col('.') - 1] == a:char
         return "\<Right>"
     else
         return a:char
     endif
-endf
+endfunction
+
+:inoremap ( ()<ESC>i
+:inoremap ) <c-r>=ClosePairExtend(')')<CR>
+:inoremap { {}<ESC>i
+:inoremap } <c-r>=ClosePairExtend('}')<CR>
+:inoremap [ []<ESC>i
+:inoremap ] <c-r>=ClosePairExtend(']')<CR>
+":inoremap < <><ESC>i
+:inoremap > <c-r>=ClosePairExtend('>')<CR>
+
 "--------------------------------------------------------------------------
 
 "--------------------------------------------------------------------------
