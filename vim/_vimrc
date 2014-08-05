@@ -97,7 +97,11 @@ set whichwrap=b,s,<,>,[,]
 
 "将一个tab设置为>-格式,用$结尾
 "set listchars=tab:>-,eol:$
-set listchars=tab:>-
+"set listchars=tab:>-
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+" Command <Tab> completion, list matches, then longest common part, then all.
+set wildmode=list:longest,full
 
 "vim使用自动对起，也就是把当前行的对起格式应用到下一行；
 set autoindent
@@ -480,11 +484,11 @@ function! ClosePairExtend(char)
     endif
 endfunction
 
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePairExtend(')')<CR>
+":inoremap ( ()<ESC>i
+":inoremap ) <c-r>=ClosePairExtend(')')<CR>
 :inoremap { {}<ESC>i
 :inoremap } <c-r>=ClosePairExtend('}')<CR>
-:inoremap [ []<ESC>i
+":inoremap [ []<ESC>i
 :inoremap ] <c-r>=ClosePairExtend(']')<CR>
 ":inoremap < <><ESC>i
 :inoremap > <c-r>=ClosePairExtend('>')<CR>
