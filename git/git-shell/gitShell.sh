@@ -27,13 +27,15 @@ greencolor() {
 }
 
 successcolor() {
-    myecho 34 "$1"
+    myecho 34 "success: $1"
 }
 
 hasError() 
 {
     if [ $? -eq 0 ];then
-        successcolor "success: $1"
+        if ! [ -z "$2" ];then
+            successcolor "$2"
+        fi
     else
         errorcolor "$1"
     fi
@@ -99,15 +101,15 @@ greencolor "The current \033[31mBranch \033[32mto \033[33m$branch\033[32m"
 
 yellowcolor "Run $fetch"
 eval "$fetch"
-hasError "$fetch"
+hasError "$fetch" "$fetch"
 
 yellowcolor "Run $rebase"
-#eval "$rebase"
-hasError "$rebase"
+eval "$rebase"
+hasError "$rebase" "$rebase"
 
 if [ "$type" == "ps" ]; then
     yellowcolor "Run $push"
-    #eval "$push"
-    hasError "$push"
+    eval "$push"
+    hasError "$push" "$push"
 fi
 greencolor "Run end"
