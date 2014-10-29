@@ -75,19 +75,19 @@ elif [ $# -eq 3 ]; then
     remote="$2"
 elif [ $# -eq 1 ]; then
 
-    branch=${branch#refs/heads/}
-
     #git rev-parse --git-dir  ###获得当前目录下得.git地址
     #`git remote -v | awk '{print $1}' | sort | uniq`
     #`git ls-remote`
     #`git show-ref * branchname`
+    branch=${branch#refs/heads/}
 
-    list="list=(`git show-ref * $branch | grep 'refs/remotes/' | awk '{print $2}'`)"
-    eval $list
+    tmp=`git show-ref * $branch | grep 'refs/remotes/' | awk '{print $2}'`
+    eval "list=($tmp)"
     if [ ${#list[@]} -gt 1 ];then
         errorcolor "The same name exists multiple remote \033[33m$branch\033[31m"
     fi
-    remote=${list%%/$branch}
+    remote=${tmp#refs/remotes/}
+    remote=${remote%%/$branch}
 fi
 
 #启动
