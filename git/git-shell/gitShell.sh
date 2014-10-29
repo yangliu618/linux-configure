@@ -33,7 +33,7 @@ successcolor() {
 hasError() 
 {
     if [ $? -eq 0 ];then
-        whitecolor "success: $1"
+        successcolor "success: $1"
     else
         errorcolor "$1"
     fi
