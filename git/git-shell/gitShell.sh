@@ -64,7 +64,7 @@ if ! [ "$1" == "ps" ] && ! [ "$1" == "fr" ]; then
     usagecolor "$Usage"
 fi
 type="$1"
-if [ $# -gt 3 ] || [ $# -eq 2 ]; then 
+if [ $# -gt 3 ] || [ $# -eq 2 ]; then
     usagecolor "$Usage"
 elif [ $# -eq 3 ]; then
     git remote show "$2" 1> /dev/null 2>&1
@@ -77,7 +77,7 @@ elif [ $# -eq 1 ]; then
 
     branch=${branch#refs/heads/}
 
-    #获得当前目录下得git地址 .git rev-parse --git-dir
+    #git rev-parse --git-dir  ###获得当前目录下得.git地址
     #`git remote -v | awk '{print $1}' | sort | uniq`
     #`git ls-remote`
     #`git show-ref * branchname`
