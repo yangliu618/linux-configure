@@ -47,7 +47,7 @@ Option   <Necessary>
     ps   git fetch & rebase & push 
     fr   git fetch & rebase
 Remote
-    -a   Remote is origin, Branch is master
+    -a   Remote is origin, Branch is your branchname
     name Remote repository of nickname
 Branch   Development branch name
 "
@@ -82,7 +82,7 @@ elif [ $# -eq 3 ]; then
 elif [ $# -eq 2 ]; then
     #参数个数为2个
     remote='origin'
-    branch='master'
+    branch=${branch#refs/heads/}
 elif [ $# -eq 1 ]; then
     #参数个数为1个
 
