@@ -6,10 +6,12 @@
 
 #### 使用
 
-    Option : //必要参数
-        ps  //执行git fetch && git rebase && git push
-        fr  //执行git fetch && git rebase
+    Option :    //必要参数
+        ps      //执行git fetch && git rebase && git push
+        fr      //执行git fetch && git rebase
 
-    Remote : //非必须 更新的远端（需要和Branch 同时使用)
+    Remote :
+        name    //非必须 更新的远端（需要和Branch 同时使用)
+        -a      //强制使用 远端origin 分支为当前branch 
 
-    Branch : //非必须 更新远端对应的分支（需要和Remote 同时使用)
+    Branch :    //非必须 更新远端对应的分支（需要和Remote 同时使用)
