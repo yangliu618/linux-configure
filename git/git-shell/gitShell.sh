@@ -27,7 +27,7 @@ greencolor() {
 }
 
 successcolor() {
-    myecho 37 "$1"
+    myecho 34 "$1"
 }
 
 hasError() 
