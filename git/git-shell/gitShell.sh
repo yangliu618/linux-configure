@@ -46,7 +46,9 @@ Usage [Option] [remote] [branch]
 Option   <Necessary>
     ps   git fetch & rebase & push 
     fr   git fetch & rebase
-Remote   Remote repository of nickname
+Remote
+    -a   Remote is origin, Branch is master
+    name Remote repository of nickname
 Branch   Development branch name
 "
 
@@ -63,17 +65,26 @@ fi
 if ! [ "$1" == "ps" ] && ! [ "$1" == "fr" ]; then
     usagecolor "$Usage"
 fi
-type="$1"
-if [ $# -gt 3 ] || [ $# -eq 2 ]; then
+
+#行为type
+type="$1" 
+
+if [ $# -gt 3 ]; then
     usagecolor "$Usage"
 elif [ $# -eq 3 ]; then
+    #参数个数为3个
     git remote show "$2" 1> /dev/null 2>&1
     hasError "Remote $2 does not exist"
     git show-ref "$2" "$3" 1> /dev/null 2>&1
     hasError "Branch $3 does not exist"
     branch="$3"
     remote="$2"
+elif [ $# -eq 2 ]; then
+    #参数个数为2个
+    remote='origin'
+    branch='master'
 elif [ $# -eq 1 ]; then
+    #参数个数为1个
 
     #git rev-parse --git-dir  ###获得当前目录下得.git地址
     #`git remote -v | awk '{print $1}' | sort | uniq`
