@@ -26,10 +26,18 @@ greencolor() {
     mkcolor 32 "$1"
 }
 
-whitecolor() {
-    mkcolor 37 "$1"
+successcolor() {
+    myecho 37 "$1"
 }
 
+hasError() 
+{
+    if [ $? -eq 0 ];then
+        whitecolor "success: $1"
+    else
+        errorcolor "$1"
+    fi
+}
 
 Usage="
 Usage [Option] [remote] [branch]
@@ -82,18 +90,21 @@ rebase="git rebase $remote/$branch"
 push="git push $remote $branch"
 
 greencolor "Run start"
-greencolor "The current remote to $remote"
-greencolor "The current branch to $branch"
+greencolor "The current \033[31mRemote\033[0m to \033[33m$remote\033[0m"
+greencolor "The current \033[31mBranch\033[0m to \033[33m$branch\033[0m"
 
 yellowcolor "Run $fetch"
 eval "$fetch"
+hasError "$fetch"
 
 yellowcolor "Run $rebase"
 eval "$rebase"
+hasError "$rebase"
 
 if [ "$type" == "ps" ]; then
     yellowcolor "Run $push"
     eval "$push"
+    hasError "$push"
 fi
 
 greencolor "Run end"
