@@ -80,6 +80,10 @@ type="$1"
 if [ $# -gt 3 ] || [ $# -eq 2 ]; then 
     usagecolor "$Usage"
 elif [ $# -eq 3 ]; then
+    git remote show "$2" 1> /dev/null 2>&1
+    hasError "Remote $2 does not exist"
+    git show-ref "$2" "$3" 1> /dev/null 2>&1
+    hasError "Branch $3 does not exist"
     branch="$3"
     remote="$2"
 fi
@@ -106,5 +110,4 @@ if [ "$type" == "ps" ]; then
     eval "$push"
     hasError "$push"
 fi
-
 greencolor "Run end"
