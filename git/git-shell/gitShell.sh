@@ -11,11 +11,11 @@ mkcolor()
 }
 
 errorcolor() {
-    myecho 31 "fatal: $1";exit;
+    myecho 31 "fatal: $1"
 }
 
 usagecolor() {
-    myecho 31 "$1";exit;
+    myecho 31 "$1"
 }
 
 yellowcolor() {
@@ -39,6 +39,7 @@ hasError()
     else
         errorcolor "$1"
     fi
+    exit
 }
 
 Usage="
@@ -47,7 +48,7 @@ Option   <Necessary>
     ps   git fetch & rebase & push 
     fr   git fetch & rebase
 Remote
-    -a   Remote is origin, Branch is your branchname
+    -a   Remote is origin, Branch is current of branch name
     name Remote repository of nickname
 Branch   Development branch name
 "
@@ -64,6 +65,7 @@ fi
 #执行 代码更新
 if ! [ "$1" == "ps" ] && ! [ "$1" == "fr" ]; then
     usagecolor "$Usage"
+    exit
 fi
 
 #行为type
@@ -71,6 +73,7 @@ type="$1"
 
 if [ $# -gt 3 ]; then
     usagecolor "$Usage"
+    exit
 elif [ $# -eq 3 ]; then
     #参数个数为3个
     git remote show "$2" 1> /dev/null 2>&1
@@ -96,6 +99,8 @@ elif [ $# -eq 1 ]; then
     eval "list=($tmp)"
     if [ ${#list[@]} -gt 1 ];then
         errorcolor "The same name exists multiple remote \033[33m$branch\033[31m"
+        usagecolor "$Usage"
+        exit
     fi
     remote=${tmp#refs/remotes/}
     remote=${remote%%/$branch}
