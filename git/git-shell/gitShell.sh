@@ -38,8 +38,8 @@ hasError()
         fi
     else
         errorcolor "$1"
+        exit
     fi
-    exit
 }
 
 Usage="
