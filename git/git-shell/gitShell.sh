@@ -84,6 +84,10 @@ elif [ $# -eq 3 ]; then
     remote="$2"
 elif [ $# -eq 2 ]; then
     #参数个数为2个
+    if [ "$2" != "-a" ];then
+        usagecolor "$Usage"
+        exit
+    fi
     remote='origin'
     branch=${branch#refs/heads/}
 elif [ $# -eq 1 ]; then

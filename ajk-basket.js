@@ -599,16 +599,12 @@
     };
 
     var performActions = function( resources ) {
-        var promise = new RSVP.Promise( function( resolve ){
-            var data = resources.map( function( obj ) {
-                if( obj.execute ) {
-                    execute( obj );
-                }
-                return obj;
-            } );
-            resolve(data);
-        });
-        return promise;
+        return resources.map( function( obj ) {
+            if( obj.execute ) {
+                execute( obj );
+            }
+            return obj;
+        } );
     };
 
     var fetch = function() {
@@ -716,7 +712,6 @@
         },
         resolve : function(data) {
             var k,
-                result = [],
                 self = this;
             for(k in data) {
                 if(typeof data[k] === 'undefined') {
@@ -724,7 +719,7 @@
                 }
                 self.type === 'js' ? self.createTextScript(data[k]) : self.createTextStyle(data[k]);
             }
-            this.callback(true, result);
+            this.callback(true, data);
         },
         reject : function(e) {
             var self = this;
