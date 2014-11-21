@@ -43,13 +43,11 @@ hasError()
 }
 
 Usage="
-Usage [Option] [remote] [branch]
+Usage [Option] [Remote] [Branch]
 Option   <Necessary>
     ps   git fetch & rebase & push 
     fr   git fetch & rebase
-Remote
-    -a   Remote is origin, Branch is current of branch name
-    name Remote repository of nickname
+Remote   Remote repository of nickname
 Branch   Development branch name
 "
 
@@ -84,11 +82,9 @@ elif [ $# -eq 3 ]; then
     remote="$2"
 elif [ $# -eq 2 ]; then
     #参数个数为2个
-    if [ "$2" != "-a" ];then
-        usagecolor "$Usage"
-        exit
-    fi
-    remote='origin'
+    git remote show "$2" 1> /dev/null 2>&1
+    hasError "Remote $2 does not exist"
+    remote="$2"
     branch=${branch#refs/heads/}
 elif [ $# -eq 1 ]; then
     #参数个数为1个
