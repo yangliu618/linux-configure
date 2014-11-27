@@ -98,7 +98,13 @@ elif [ $# -eq 1 ]; then
     tmp=`git show-ref * $branch | grep 'refs/remotes/' | awk '{print $2}'`
     eval "list=($tmp)"
     if [ ${#list[@]} -gt 1 ];then
-        errorcolor "The same name exists multiple remote \033[33m$branch\033[31m"
+        choose=""
+        for a in $tmp ; do
+            a=${a#refs/remotes/}
+            a=${a%%/$branch}
+            choose="$choose $a"
+        done
+        errorcolor "The same name exists multiple remote \033[33m$branch\033[31m, Please choose remote \033[32m[$choose ]\033[0m"
         usagecolor "$Usage"
         exit
     fi

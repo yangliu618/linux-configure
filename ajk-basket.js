@@ -496,6 +496,7 @@
             setTimeout( function () {
                 if( xhr.readyState < 4 ) {
                     xhr.abort();
+                    reject( new Error( xhr.statusText ) );
                 }
             }, basket.timeout );
 
