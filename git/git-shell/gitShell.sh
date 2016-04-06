@@ -30,7 +30,7 @@ successcolor() {
     myecho 34 "success: $1"
 }
 
-hasError() 
+hasError()
 {
     if [ $? -eq 0 ];then
         if ! [ -z "$2" ];then
@@ -45,8 +45,11 @@ hasError()
 Usage="
 Usage [Option] [Remote] [Branch]
 Option   <Necessary>
-    ps   git fetch & rebase & push 
+    ps   git fetch & rebase & push
     fr   git fetch & rebase
+    st   git status
+    df   git diff
+    dc   git diff --cache
 Remote   Remote repository of nickname
 Branch   Development branch name
 "
@@ -61,13 +64,14 @@ if [ -z "$branch" ]; then
 fi
 
 #执行 代码更新
-if ! [ "$1" == "ps" ] && ! [ "$1" == "fr" ]; then
+if ! [ "$1" == "ps" ] && ! [ "$1" == "fr" ] && \
+! [ "$1" == "st" ] && ! [ "$1" == "df" ] && ! [ "$1" == "dc" ];then
     usagecolor "$Usage"
     exit
 fi
 
 #行为type
-type="$1" 
+type="$1"
 
 if [ $# -gt 3 ]; then
     usagecolor "$Usage"
@@ -95,7 +99,7 @@ elif [ $# -eq 1 ]; then
     #`git show-ref * branchname`
     branch=${branch#refs/heads/}
 
-    tmp=`git show-ref * $branch | grep 'refs/remotes/' | awk '{print $2}'`
+    tmp=`git show-ref "$branch" | grep 'refs/remotes/' | awk '{print $2}'`
     eval "list=($tmp)"
     if [ ${#list[@]} -gt 1 ];then
         choose=""
@@ -116,22 +120,34 @@ fi
 fetch="git fetch $remote"
 rebase="git rebase $remote/$branch"
 push="git push $remote $branch"
+diffCache="git diff --cached"
+diff="git diff"
+stat="git status"
 
 greencolor "Run start"
 greencolor "The current \033[31mRemote \033[32mto \033[33m$remote\033[32m"
 greencolor "The current \033[31mBranch \033[32mto \033[33m$branch\033[32m"
 
-yellowcolor "Run $fetch"
-eval "$fetch"
-hasError "$fetch" "$fetch"
-
-yellowcolor "Run $rebase"
-eval "$rebase"
-hasError "$rebase" "$rebase"
-
-if [ "$type" == "ps" ]; then
-    yellowcolor "Run $push"
-    eval "$push"
-    hasError "$push" "$push"
+function runCommand() {
+    local command="$1"
+    yellowcolor "Run $command"
+    eval "$command"
+    hasError "$command" "$command"
+}
+if [ "$type" == "fr" ]; then
+    runCommand "$fetch"
+    runCommand "$rebase"
+elif [ "$type" == "ps" ]; then
+    runCommand "$fetch"
+    runCommand "$rebase"
+    runCommand "$push"
+elif [ "$type" == "st" ]; then
+    runCommand "$stat"
+elif [ "$type" == "df" ]; then
+    runCommand "$diff"
+elif [ "$type" == "dc" ]; then
+    runCommand "$diffCache"
+else
+    usagecolor "$Usage"
 fi
 greencolor "Run end"
