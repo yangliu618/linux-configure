@@ -2,7 +2,7 @@
 #set -x
 auto_login_ssh () {
     #auto_login_ssh password username@xxx.xxx.xxx.xxx
-    local time=1;
+    local time=3;
     expect -c "
         set timeout $time;
         spawn -noecho ssh -o StrictHostKeyChecking=no $2 ${@:3};

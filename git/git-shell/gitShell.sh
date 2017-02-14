@@ -99,7 +99,7 @@ elif [ $# -eq 1 ]; then
     #`git show-ref * branchname`
     branch=${branch#refs/heads/}
 
-    tmp=`git show-ref "$branch" | grep 'refs/remotes/' | awk '{print $2}'`
+    tmp=`git show-ref "$branch" | grep --color=auto 'refs/remotes/' | awk '{print $2}'`
     eval "list=($tmp)"
     if [ ${#list[@]} -gt 1 ];then
         choose=""
