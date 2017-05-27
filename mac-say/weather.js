@@ -65,12 +65,12 @@ function getWeather(opt, cb) {
         if(!winfo) {
             return;
         }
-        msg += "当前天气" + winfo.weather_curr;
+        msg += "室外天气" + winfo.weather_curr;
         if(pminfo) {
-            msg += ",空气" + pminfo.aqi_levnm + " PM2.5系数" + pminfo.aqi;
+            msg += ",空气质量" + pminfo.aqi_levnm + ",PM2.5系数" + pminfo.aqi;
         }
-        msg += ",最高气温" + winfo.temp_high + "摄氏度" + " 最低气温" + winfo.temp_low + "摄氏度";
-        msg += " 当前户外" + winfo.temp_curr + "摄氏度";
+        msg += ",最高气温" + winfo.temp_high + "摄氏度" + ",最低气温" + winfo.temp_low + "摄氏度";
+        msg += ",当前户外温度" + winfo.temp_curr + "摄氏度";
         if(pminfo) {
             msg += "," +pminfo.aqi_remark
         }
