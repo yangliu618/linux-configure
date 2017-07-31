@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -x
 H=`date +%H`
-macHour=`date +%l"时整"`
+macHour=`date +%l"点整"`
 A=`expr $H - 12`
 B=0
 M="上午"

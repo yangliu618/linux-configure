@@ -22,7 +22,7 @@ var type = {
 function getWeather(opt, cb) {
     var options = {
         hostname : "api.k780.com",
-        port : 80,
+        port : 88,
         path : "/?" + qs.stringify(Object.assign({}, ksign, opt))
     }
     var req = http.request(options, function (res) {  
@@ -66,14 +66,14 @@ function getWeather(opt, cb) {
             return;
         }
         msg += "室外天气" + winfo.weather_curr;
-        if(pminfo) {
-            msg += ",空气质量" + pminfo.aqi_levnm + ",P M2.5系数" + pminfo.aqi;
-        }
-        msg += ",最高气温" + winfo.temp_high + "摄氏度" + ",最低气温" + winfo.temp_low + "摄氏度";
-        msg += ",当前户外温度" + winfo.temp_curr + "摄氏度";
-        if(pminfo) {
-            msg += "," +pminfo.aqi_remark
-        }
+        msg += ",户外温度" + winfo.temp_curr + "摄氏度";
+        //if(pminfo) {
+        //    msg += ",空气质量" + pminfo.aqi_levnm + ",P M2.5系数" + pminfo.aqi;
+        //}
+        //msg += ",最高气温" + winfo.temp_high + "摄氏度" + ",最低气温" + winfo.temp_low + "摄氏度";
+        //if(pminfo) {
+        //    msg += "," +pminfo.aqi_remark
+        //}
         console.log(msg);
     });
  });
