@@ -45,3 +45,10 @@ for mac
 for ubuntu
 
     echo "alias uptags='/bin/bash ~/.vim/scripts/uptags.sh'" >> ~/.bashrc
+
+
+### 参考文章
+
+[https://www.cnblogs.com/sybboy/p/8989342.html](https://www.cnblogs.com/sybboy/p/8989342.html)
+
+
