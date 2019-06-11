@@ -50,5 +50,6 @@ for ubuntu
 ### 参考文章
 
 [https://www.cnblogs.com/sybboy/p/8989342.html](https://www.cnblogs.com/sybboy/p/8989342.html)
+[https://segmentfault.com/a/1190000006894422](https://segmentfault.com/a/1190000006894422)
 
 
