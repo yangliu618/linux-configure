@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 var http = require('http');  
 var qs = require('querystring');  
-//http://api.k780.com/?app=weather.today&weaid=shanghai&appkey=25744&sign=7a2ab9870de651b3c575b55d283a61db&format=json 天气
-//http://api.k780.com/?app=weather.pm25&weaid=shanghai&appkey=25744&sign=7a2ab9870de651b3c575b55d283a61db&format=json pm2.
 var ksign= {
     weaid : "shanghai",
     appkey : 25744,
-    sign : "7a2ab9870de651b3c575b55d283a61db",
+    sign : "2bc8444b166c5c0e7f430665553a220f",
     format : "json"
 }
 var type = {
@@ -67,13 +65,13 @@ function getWeather(opt, cb) {
         }
         msg += "室外天气" + winfo.weather_curr;
         msg += ",户外温度" + winfo.temp_curr + "摄氏度";
-        //if(pminfo) {
-        //    msg += ",空气质量" + pminfo.aqi_levnm + ",P M2.5系数" + pminfo.aqi;
-        //}
-        //msg += ",最高气温" + winfo.temp_high + "摄氏度" + ",最低气温" + winfo.temp_low + "摄氏度";
-        //if(pminfo) {
+        if(pminfo) {
+           msg += ",空气质量" + pminfo.aqi_levnm + ",P M2.5系数" + pminfo.aqi;
+        }
+        msg += ",最高气温" + winfo.temp_high + "摄氏度" + ",最低气温" + winfo.temp_low + "摄氏度";
+        // if(pminfo) {
         //    msg += "," +pminfo.aqi_remark
-        //}
+        // }
         console.log(msg);
     });
  });
